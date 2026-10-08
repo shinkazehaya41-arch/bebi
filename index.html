@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Truth or Dare — Filipino Edition</title>
+  <meta name="description" content="Tagalog Truth or Dare game — totoo o tapang?!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎉</text></svg>" />
+</head>
+<body>
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <!-- ============ SETUP SCREEN ============ -->
+  <section class="screen active" id="screenSetup">
+    <div class="balloons" aria-hidden="true">
+      <span style="--x:8%;--d:0s;--c:#ff5e7e">🎈</span>
+      <span style="--x:25%;--d:1.2s;--c:#ffd166">🎈</span>
+      <span style="--x:70%;--d:.6s;--c:#06d6a0">🎈</span>
+      <span style="--x:88%;--d:1.8s;--c:#4cc9f0">🎈</span>
+    </div>
+
+    <header class="hero">
+      <p class="eyebrow">Handa ka na bang mahuli?</p>
+      <h1 class="title">
+        <span class="line">TRUTH</span>
+        <span class="or">o</span>
+        <span class="line alt">DARE</span>
+      </h1>
+      <p class="subtitle">Filipino Edition — Totoo o Tapang? Walang palusot!</p>
+    </header>
+
+    <div class="card panel">
+      <h2 class="panel-title">📝 Ilagay ang mga manlalaro</h2>
+      <form id="playerForm" class="player-form" autocomplete="off">
+        <input type="text" id="playerInput" placeholder="Pangalan ng player..." maxlength="18" />
+        <button type="submit" class="btn btn-add" id="addBtn">Idagdag</button>
+      </form>
+
+      <ul class="player-list" id="playerList"></ul>
+
+      <div class="setup-actions">
+        <button class="btn btn-ghost" id="quickStart">⚡ Mabilisang Laro (2 Players)</button>
+        <button class="btn btn-start" id="startBtn" disabled>🎮 Simulan na!</button>
+      </div>
+
+      <p class="hint" id="setupHint">Kailangan ng hindi bababa sa 2 manlalaro.</p>
+    </div>
+
+    <footer class="footer-note">Gawa with ❤️ — pwedeng i-download at i-host sa GitHub Pages</footer>
+  </section>
+
+  <!-- ============ GAME SCREEN ============ -->
+  <section class="screen" id="screenGame">
+    <header class="game-top">
+      <button class="btn btn-mini" id="backHome" title="Bumalik sa setup">✕</button>
+      <div class="round-label" id="roundLabel">Round 1</div>
+      <button class="btn btn-mini" id="showScores" title="Marka">🏆</button>
+    </header>
+
+    <div class="turn-banner" id="turnBanner">
+      <span class="turn-label">Turn ni</span>
+      <span class="turn-name" id="turnName">—</span>
+    </div>
+
+    <!-- Card area -->
+    <div class="card-stage">
+      <div class="game-card" id="gameCard">
+        <div class="card-face card-back">
+          <div class="card-back-inner">
+            <span class="card-back-icon">❔</span>
+            <p>Piliin: <strong>TOOoo</strong> o <strong>DARE</strong></p>
+          </div>
+        </div>
+        <div class="card-face card-front" id="cardFront">
+          <span class="card-badge" id="cardBadge">TOOtoO</span>
+          <p class="card-text" id="cardText">...</p>
+          <span class="card-timer" id="cardTimer"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Choice buttons -->
+    <div class="choice-row" id="choiceRow">
+      <button class="btn btn-truth" id="truthBtn"><span>🫣</span> TOTOO</button>
+      <button class="btn btn-dare" id="dareBtn"><span>😈</span> DARE</button>
+    </div>
+
+    <!-- Action buttons after card reveal -->
+    <div class="action-row hidden" id="actionRow">
+      <button class="btn btn-done" id="doneBtn">✅ Natupad!</button>
+      <button class="btn btn-pass" id="passBtn">🏳️ Pass (−1)</button>
+      <button class="btn btn-next" id="nextBtn">➡️ Sunod</button>
+    </div>
+
+    <!-- Scoreboard overlay -->
+    <div class="overlay hidden" id="scoreOverlay">
+      <div class="card panel score-panel">
+        <h2 class="panel-title">🏆 Markahan</h2>
+        <ul class="score-list" id="scoreList"></ul>
+        <button class="btn btn-start" id="closeScores">Isara</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
