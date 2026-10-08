@@ -76,7 +76,7 @@ const state = {
   scores: {},
   usedTruth: new Set(),
   usedDare: new Set(),
-  pendingTimer: null
+  pendingType: null
 };
 
 /* ---------------- Elements ---------------- */
@@ -100,9 +100,12 @@ const gameCard = $("gameCard");
 const cardFront = $("cardFront");
 const cardBadge = $("cardBadge");
 const cardText = $("cardText");
-const cardTimer = $("cardTimer");
 const choiceRow = $("choiceRow");
 const actionRow = $("actionRow");
+const hostPanel = $("hostPanel");
+const hostForm = $("hostForm");
+const hostInput = $("hostInput");
+const waitingText = $("waitingText");
 const doneBtn = $("doneBtn");
 const passBtn = $("passBtn");
 const nextBtn = $("nextBtn");
@@ -235,57 +238,62 @@ function updateTurnUI() {
 }
 
 function resetCard() {
-  clearInterval(state.pendingTimer);
-  cardTimer.textContent = "";
+  state.pendingType = null;
   gameCard.classList.remove("flipped");
   choiceRow.classList.remove("hidden");
   actionRow.classList.add("hidden");
+  hostPanel.classList.add("hidden");
+  hostInput.value = "";
 }
 
-function pickCard(type) {
-  const pool = type === "truth" ? TRUTHS : DARES;
-  const used = type === "truth" ? state.usedTruth : state.usedDare;
+/* Player only picks T or D — card stays hidden until the host's command */
+function chooseType(type) {
+  state.pendingType = type;
+  beep(type === "truth" ? 740 : 300, 0.16);
+  choiceRow.classList.add("hidden");
+  hostPanel.classList.remove("hidden");
+  waitingText.textContent = `⏳ ${state.players[state.current]}, hintayin mo ang command ng host…`;
+  hostInput.value = "";
+  hostInput.focus();
+}
 
-  if (used.size >= pool.length) used.clear();
+function revealCard() {
+  const type = state.pendingType;
+  if (!type) return;
 
-  let idx;
-  do {
-    idx = Math.floor(Math.random() * pool.length);
-  } while (used.has(idx));
-  used.add(idx);
+  let text = hostInput.value.trim();
+
+  if (!text) {
+    const pool = type === "truth" ? TRUTHS : DARES;
+    const used = type === "truth" ? state.usedTruth : state.usedDare;
+    if (used.size >= pool.length) used.clear();
+    let idx;
+    do {
+      idx = Math.floor(Math.random() * pool.length);
+    } while (used.has(idx));
+    used.add(idx);
+    text = pool[idx];
+  }
 
   cardFront.classList.toggle("is-truth", type === "truth");
   cardFront.classList.toggle("is-dare", type === "dare");
   cardBadge.textContent = type === "truth" ? "💯 TOOtoO" : "😈 DARE!";
-  cardText.textContent = pool[idx];
+  cardText.textContent = text;
 
-  beep(type === "truth" ? 740 : 300, 0.16);
+  hostPanel.classList.add("hidden");
+  hostInput.value = "";
   gameCard.classList.add("flipped");
-  choiceRow.classList.add("hidden");
   actionRow.classList.remove("hidden");
-
-  clearInterval(state.pendingTimer);
-
-  if (type === "dare") {
-    let t = 20;
-    cardTimer.textContent = `${t}s`;
-    state.pendingTimer = setInterval(() => {
-      t--;
-      cardTimer.textContent = t > 0 ? `${t}s` : "TAGALOG NA! ⏰";
-      cardTimer.classList.remove("tick");
-      void cardTimer.offsetWidth;
-      cardTimer.classList.add("tick");
-      if (t <= 5 && t > 0) beep(880, 0.07);
-      if (t <= 0) {
-        clearInterval(state.pendingTimer);
-        beep(220, 0.35);
-      }
-    }, 1000);
-  }
+  beep(520, 0.2);
+  confetti(25);
 }
 
-$("truthBtn").addEventListener("click", () => pickCard("truth"));
-$("dareBtn").addEventListener("click", () => pickCard("dare"));
+$("truthBtn").addEventListener("click", () => chooseType("truth"));
+$("dareBtn").addEventListener("click", () => chooseType("dare"));
+hostForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  revealCard();
+});
 
 doneBtn.addEventListener("click", () => {
   const name = state.players[state.current];
@@ -305,7 +313,6 @@ passBtn.addEventListener("click", () => {
 nextBtn.addEventListener("click", nextTurn);
 
 function nextTurn() {
-  clearInterval(state.pendingTimer);
   state.current++;
   if (state.current >= state.players.length) {
     state.current = 0;
@@ -320,7 +327,6 @@ $("showScores").addEventListener("click", openScores);
 $("closeScores").addEventListener("click", () => scoreOverlay.classList.add("hidden"));
 
 function openScores() {
-  clearInterval(state.pendingTimer);
   scoreList.innerHTML = "";
 
   const ranked = [...state.players].sort(
@@ -348,7 +354,6 @@ function openScores() {
 
 /* ---------------- Exit ---------------- */
 $("backHome").addEventListener("click", () => {
-  clearInterval(state.pendingTimer);
   scoreOverlay.classList.add("hidden");
   show("setup");
 });
@@ -359,8 +364,11 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") scoreOverlay.classList.add("hidden");
     return;
   }
-  if (e.key === "1" || e.key.toLowerCase() === "t") $("truthBtn").click();
-  if (e.key === "2" || e.key.toLowerCase() === "d") $("dareBtn").click();
+  if (document.activeElement === hostInput) return;
+  if (!choiceRow.classList.contains("hidden")) {
+    if (e.key === "1" || e.key.toLowerCase() === "t") $("truthBtn").click();
+    if (e.key === "2" || e.key.toLowerCase() === "d") $("dareBtn").click();
+  }
   if (e.key.toLowerCase() === "s") $("showScores").click();
 });
 

@@ -78,7 +78,6 @@
         <div class="card-face card-front" id="cardFront">
           <span class="card-badge" id="cardBadge">TOOtoO</span>
           <p class="card-text" id="cardText">...</p>
-          <span class="card-timer" id="cardTimer"></span>
         </div>
       </div>
     </div>
@@ -87,6 +86,17 @@
     <div class="choice-row" id="choiceRow">
       <button class="btn btn-truth" id="truthBtn"><span>🫣</span> TOTOO</button>
       <button class="btn btn-dare" id="dareBtn"><span>😈</span> DARE</button>
+    </div>
+
+    <!-- Host command area (host reveals the card) -->
+    <div class="host-panel hidden" id="hostPanel">
+      <p class="waiting-text" id="waitingText">⏳ Hintayin ang command ng host…</p>
+      <form id="hostForm" class="host-form" autocomplete="off">
+        <input type="text" id="hostInput" maxlength="160"
+               placeholder="Host: isulat ang tanong/dare (kung walang laman = galing sa listahan)" />
+        <button type="submit" class="btn btn-reveal" id="revealBtn">🎤 SAGOT NA!</button>
+      </form>
+      <p class="host-hint">Walang makakakita hangga't hindi mo pinipindot ang command.</p>
     </div>
 
     <!-- Action buttons after card reveal -->
