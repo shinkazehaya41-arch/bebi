@@ -151,7 +151,7 @@ input[type="text"]::placeholder { color: #8f84b3; font-weight: 400; }
 }
 
 .player-list:empty::after {
-  content: "Wala pang player. Dagdagan mo nga!";
+  content: "No players yet. Add someone!";
   color: var(--muted);
   font-size: .92rem;
   font-style: italic;

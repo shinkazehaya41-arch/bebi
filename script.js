@@ -1,71 +1,71 @@
 /* =========================================================
-   Truth or Dare — Filipino Edition
+   Truth or Dare
    ========================================================= */
 
 const TRUTHS = [
-  "Sino ang una mong minahal nang hindi mo pa alam ang ibig sabihin ng pag-ibig?",
-  "Anong pangalan ang nakasulat sa sulat na hindi mo na naipadala?",
-  "Kailan ka huling umiyak dahil sa taong mahal mo — at hindi dahil sa pelikula?",
-  "Ano ang huling linya na sinabi mo sa taong minahal mo — may paalam ba o biglaan lang?",
-  "Sino ang palaging nasa dulo ng bawat tula na sinulat mo?",
-  "Anong alaala mo sa kanya ang ayaw mong limutin, kahit gustong-gusto na?",
-  "Gaano katagal bago mo nakalimutan ang taong unang sumira ng puso mo?",
-  "Ano ang boses ng dating pag-ibig — pamilyar pa rin ba, o echo na lang?",
-  "Sino ang tahimik mong mahal habang maingay ang lahat sa paligid?",
-  "Anong pangako mo na hindi mo na tinupad sa huling relasyon mo?",
-  "Kung babalik ang isang araw kasama ang dating sinta, anong apat na salita ang sasabihin mo?",
-  "Ano ang pinakamatamis na maling desisyon na ginawa ng puso mo?",
-  "Sino ang nagnakaw ng isang gabi mo sa panaginip?",
-  "Anong kanta ang nagpapaalala sa kanya — at ano ang nararamdaman mo sa unang nota pa lang?",
-  "Naging tapat ka ba sa huling pag-ibig mo, o naging tangan lang ng takot?",
-  "Anong katagang hindi mo na nabura sa isip mo mula sa huling mensahe niya?",
-  "Sino ang huling taong pinagdasal mong sana'y masaya — kahit wala ka na roon?",
-  "May tao pa rin ba na kapag binanggit, kumikirot pa ang dibdib mo?",
-  "Ano ang paalam na hindi mo nasabi — at hanggang kailan mo ito itatago?",
-  "Ano ang unang hinahanap mo pagkagising — siya pa rin ba?",
-  "Gaano ka kalakas umibig — hanggang sa mabigo, o hanggang sa matuto?",
-  "Anong berso ng buhay mo ang isinulat mo sa kamay ng iba?",
-  "Sino ang huling taong tinawag mong 'tahanan'?",
-  "Kung ang puso mo ay tula, anong pahina ang pinakamadilim?",
-  "Ano ang paborito mong katangian niya na siya mismo ay kinamuhian?",
-  "Sinong pangalan ang nakaukit sa bawat tula ng pagsisisi mo?",
-  "Mayroon ka bang taong minahal nang lihim — at hanggang ngayon, lihim pa rin?",
-  "Ano ang huling beses na sinabi mong 'sana' — at kanino ito binitawan?",
-  "Kung ang pag-ibig ay dagat, saan ka na ba nalunod at saan ka natutong lumangoy?",
-  "Sino ang taong kahit anong gawin mo, hindi matatanggal sa dulo ng bawat kuwento mo?"
+  "Who was the first person you loved before you even knew what love meant?",
+  "What name is written on the letter you never sent?",
+  "When did you last cry because of someone you love — and not because of a movie?",
+  "What were the last words you said to the one you loved — was there a goodbye, or did it just end?",
+  "Who always appears at the end of every poem you write?",
+  "Which memory of them do you refuse to let go, even though you desperately want to?",
+  "How long did it take you to forget the person who first broke your heart?",
+  "What does the voice of your past love sound like now — familiar, or just an echo?",
+  "Who do you love quietly while everyone else is loud?",
+  "What promise did you fail to keep in your last relationship?",
+  "If you could have one day back with your ex, what four words would you say?",
+  "What was the sweetest wrong decision your heart ever made?",
+  "Who stole a night of yours from your dreams?",
+  "What song reminds you of them — and what do you feel on the very first note?",
+  "Were you truly loyal in your last love, or just possessed by fear?",
+  "Which word from their last message can you still not erase from your mind?",
+  "Who was the last person you prayed for — hoping they'd be happy even without you?",
+  "Is there still someone whose name makes your chest ache?",
+  "What goodbye did you never say — and how long will you keep it?",
+  "What is the first thing you look for when you wake up — is it still them?",
+  "How deeply can you love — until you break, or until you learn?",
+  "Which page of your life did you write on someone else's hand?",
+  "Who was the last person you called 'home'?",
+  "If your heart is a poem, which page is the darkest?",
+  "What quality of theirs did you love the most — the one they themselves hated?",
+  "Whose name is carved into every poem of your regret?",
+  "Have you ever loved someone in secret — and is it still a secret?",
+  "When was the last time you whispered 'I wish' — and to whom?",
+  "If love is an ocean, where did you drown and where did you learn to swim?",
+  "Who is the person you can never erase from the end of every story?"
 ];
 
 const DARES = [
-  "Kumanta ng 15 segundo ng kahit anong kanta!",
-  "Mag-imagine na ikaw ay manok… tumilaok ng 3 beses!",
-  "Tumawa nang malakas nang 5 segundo — walang tigil!",
-  "Mag-push-up ng 5 beses (walang kain ng patay!)",
-  "Mag-post: “Single ako, DM is welcome!” — buhay ng 1 oras",
-  "Gumaya sa ibang tao sa room hanggang sa may makahula",
-  "Mag-English nang 30 segundo nang walang tumigil",
-  "Palitan ang profile pic mo ng litrato ng kasama mo (24 oras)",
-  "Mag-robot dance ng 10 segundo",
-  "Sabihin ang pangalan ng crush mo ng 5 beses nang malakas",
-  "Mag-step touch ng 10 segundo na may bilis!",
-  "Mag-plank ng 15 segundo — walang bibitaw!",
-  "Ipakita ang pinakahuling litrato sa gallery mo sa lahat",
-  "Mag-lipsync ng isang verse ng kanta",
-  "Gumawa ng haiku (5-7-5) tungkol sa kasama mo",
-  "Sabihin ang isang nakakahiya mong karanasan sa 1 minuto",
-  "I-serve ang katabi mo ng tubig nang may bow 🙇",
-  "Mag-comment ng “Ang ganda/gwapo mo” sa unang post ng feed mo",
-  "Tumakbo nang mabilis sa loob ng bahay ng 2 beses",
-  "Sabihin nang malakas: “Ang gwapo/ganda ko!” nang 3 beses",
-  "Mag-taglish dialogue mag-isa nang 20 segundo",
-  "Ipakita ang pinaka-unang text message sa crush mo",
-  "Gumawa ng 3 mukha — kukunan ng picture ng kasama mo",
-  "Kumain ng isang kutsarang asukal nang walang tubig",
-  "Magsalita gamit ang boses ng robot hanggang sa sumunod na turn mo",
-  "Mag-sayaw ng 10 segundo na walang music",
-  "I-text ang bestfriend mo ng “Mahal kita” — ipakita ang reply",
-  "Mag-pose ng modelo ng 10 segundo sa gitna ng sala",
-  "Hulaan kung sino ang unang matutulog dito tonight",
-  "Palitan ang pangalan mo sa phone ng kasama mo hanggang mamaya"
+  "Sing for 15 seconds — any song!",
+  "Pretend you're a chicken… cluck 3 times!",
+  "Laugh out loud for 5 seconds straight — don't stop!",
+  "Do 5 push-ups (no dead weight!)",
+  "Post: 'I'm single, DMs welcome!' — leave it up for 1 hour",
+  "Imitate someone in the room until someone guesses who",
+  "Speak only English for 30 seconds without stopping",
+  "Change your profile pic to a photo of the person next to you (24 hours)",
+  "Do the robot dance for 10 seconds",
+  "Say your crush's name 5 times loudly",
+  "Do the step-touch for 10 seconds — fast!",
+  "Hold a plank for 15 seconds — don't you dare drop!",
+  "Show everyone the most recent photo in your gallery",
+  "Lip-sync to one verse of a song",
+  "Make a haiku (5-7-5) about the person beside you",
+  "Tell your most embarrassing story in 1 minute",
+  "Serve the person next to you a glass of water with a bow 🙇",
+  "Comment 'You're beautiful/handsome' on the first post in your feed",
+  "Run around the house twice, fast!",
+  "Shout 'I'm so handsome/pretty!' three times",
+  "Have a 20-second conversation with yourself",
+  "Show the first text you ever sent to your crush",
+  "Make 3 funny faces — the person next to you takes a picture",
+  "Eat a spoonful of sugar with no water",
+  "Talk in a robot voice until your next turn",
+  "Dance for 10 seconds with no music",
+  "Text your best friend 'I love you' — show the reply",
+  "Strike a model pose for 10 seconds in the middle of the room",
+  "Guess who will fall asleep first tonight",
+  "Rename yourself in this person's phone until later tonight"
 ];
 
 /* ---------------- State ---------------- */
@@ -171,7 +171,7 @@ function renderPlayers() {
     const del = document.createElement("button");
     del.type = "button";
     del.textContent = "×";
-    del.setAttribute("aria-label", `Alisin si ${name}`);
+    del.setAttribute("aria-label", `Remove ${name}`);
     del.addEventListener("click", () => {
       state.players.splice(i, 1);
       delete state.scores[name];
@@ -185,8 +185,8 @@ function renderPlayers() {
   const enough = state.players.length >= 2;
   startBtn.disabled = !enough;
   setupHint.textContent = enough
-    ? `Handa na ang ${state.players.length} manlalaro! Simulan mo na. 🔥`
-    : "Kailangan ng hindi bababa sa 2 manlalaro.";
+    ? `${state.players.length} players ready! Let's go. 🔥`
+    : "You need at least 2 players.";
 }
 
 playerForm.addEventListener("submit", (e) => {
@@ -194,11 +194,11 @@ playerForm.addEventListener("submit", (e) => {
   const name = playerInput.value.trim();
   if (!name) return;
   if (state.players.some((p) => p.toLowerCase() === name.toLowerCase())) {
-    setupHint.textContent = "Uy, may ganyan nang pangalan. Iba naman!";
+    setupHint.textContent = "That name already exists — pick another!";
     return;
   }
   if (state.players.length >= 8) {
-    setupHint.textContent = "8 players na max — sobra na yan, party na yan!";
+    setupHint.textContent = "Max 8 players — that's already a party!";
     return;
   }
   state.players.push(name);
@@ -252,7 +252,7 @@ function chooseType(type) {
   beep(type === "truth" ? 740 : 300, 0.16);
   choiceRow.classList.add("hidden");
   hostPanel.classList.remove("hidden");
-  waitingText.textContent = `⏳ ${state.players[state.current]}, hintayin mo ang command ng host…`;
+  waitingText.textContent = `⏳ ${state.players[state.current]}, wait for the host's command…`;
   hostInput.value = "";
   hostInput.focus();
 }
@@ -277,7 +277,7 @@ function revealCard() {
 
   cardFront.classList.toggle("is-truth", type === "truth");
   cardFront.classList.toggle("is-dare", type === "dare");
-  cardBadge.textContent = type === "truth" ? "💯 TOOtoO" : "😈 DARE!";
+  cardBadge.textContent = type === "truth" ? "💯 TRUTH" : "😈 DARE!";
   cardText.textContent = text;
 
   hostPanel.classList.add("hidden");
